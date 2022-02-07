@@ -25,6 +25,8 @@ const reducerAddBooks= (state= initialState.books,action) => {
             state= [...state,helperAdddata(action)]
             localStorage.setItem('booksData', JSON.stringify(state))
             return state;
+
+            default: return state
     }
 }
 
