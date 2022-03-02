@@ -14,9 +14,10 @@ function App() {
           <Route exact path="/" component={ AddBooks }/>
           <Route path="/search" component={ SearchBooks }/>
         </Switch>
-      <Footer/>
+      <Footer/>  
     </Router>
-        <AddBooks/>
+    
+        
     </div>
   );
 }
