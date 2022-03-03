@@ -48,15 +48,14 @@ const AddBooks = ({libraryData,addBook,deleteBook,deleteAll}) => {
 
     return(
         <main role="main">
-            <div className="jumbotron jumbotron-fluid">
-                <div className="container text-center">
-                    <h1 className="display-4">BOOKS</h1>
-                    <p>Ajouter un livre à votre bibliothèque</p>
+            <div className="container text-center" style={{backgroundColor:'lightgrey', maxWidth:'100%'}}>
+                <h1 className="display-4" style={{paddingTop:'40px'}}>BOOKS</h1>
+                <p>Ajouter un livre à votre bibliothèque</p>
 
-                    <form className="form-inline justify-content-center" onSubmit={handleSubmit}>
-                        <div className="form-group">
-                            <input 
-                                value={newData.title}
+                <form className="row justify-content-center" onSubmit={handleSubmit}>
+                    <div className="col-auto" style={{marginBottom:'40px'}}>
+                        <input 
+                            value={newData.title}
                                 type="text" 
                                 className="form-control"
                                 placeholder="Titre"
@@ -64,7 +63,7 @@ const AddBooks = ({libraryData,addBook,deleteBook,deleteAll}) => {
                                 onChange={e => setNewData({...newData, title:e.target.value})}
                             />
                         </div>
-                        <div className="form-group">
+                        <div className="col-auto">
                             <input 
                                 value={newData.author}
                                 type="text" 
@@ -74,16 +73,15 @@ const AddBooks = ({libraryData,addBook,deleteBook,deleteAll}) => {
                                 onChange={e => setNewData({...newData, author:e.target.value})}
                             />
                         </div>
-                        <div className="form-group">
+                        <div className="col-auto">
                             <button className="btn btn-outline-secondary ml-3">Ajouter un livre</button>
                         </div>
                     </form>
-                </div>
             </div>
 
-            <div className="container" style={{minHeight:'255px'}}>
+            <div className="container" style={{minHeight:'210px'}}>
 
-                <div className='row'>
+                <div className='row' style={{marginTop:'40px'}}>
                     <div className="col-md-12">
                         <ul className="list-group">
                             <li className="list-group-item list-group-item-light d-flex justify-content-between">
@@ -95,8 +93,7 @@ const AddBooks = ({libraryData,addBook,deleteBook,deleteAll}) => {
                         </div>
                         {deleteAllBooksBtn}
                     </div>
-                </div> 
-
+                </div>
             </div>
         </main>
     )
