@@ -5,6 +5,8 @@ import FlipMove from 'react-flip-move'
 
 const AddBooks = ({libraryData,addBook,deleteBook,deleteAll}) => {
 
+    console.log(libraryData)
+
     const initialState ={
         title:'',
         author:''
@@ -20,16 +22,19 @@ const AddBooks = ({libraryData,addBook,deleteBook,deleteAll}) => {
         setNewData(initialState)
     }
 
-    const displayData = libraryData.length>0 ? 
+    const displaydata = libraryData.length>0 ? 
         <FlipMove>
         {
             libraryData.map(data => {
-            return (
-                <li key={data.id} className="list-group-item list-group-item-light d-flex justify-content-between">
-                    <span><strong>Titre:</strong>{data.title}</span>
-                    <span><strong>Auteur:</strong>{data.auteur}</span>
-                    <span className="btn btn-danger">x</span>
-                </li>
+                return (
+                    <li key={data.id} className="list-group-item list-group-item-light d-flex justify-content-between">
+                        <span><strong>Titre: </strong>{data.title}</span>
+                        <span><strong>Auteur: </strong>{data.author}</span>
+                        <span 
+                            className="btn btn-danger"
+                            onClick={() => deleteBook(data.id)}
+                        >x</span>
+                    </li>
                 )
             })
         }
@@ -41,8 +46,7 @@ const AddBooks = ({libraryData,addBook,deleteBook,deleteAll}) => {
             <button 
                 className="btn btn-danger mt-4 mb-5"
                 onClick={() => deleteAll()}
-            >
-            Effacer tous les livres
+                >Effacer tous les livres
             </button>
         </div>
 
@@ -73,8 +77,9 @@ const AddBooks = ({libraryData,addBook,deleteBook,deleteAll}) => {
                                 onChange={e => setNewData({...newData, author:e.target.value})}
                             />
                         </div>
-                        <div className="col-auto">
-                            <button className="btn btn-outline-secondary ml-3">Ajouter un livre</button>
+
+                        <div className="form-group">
+                            <button className="btn btn-outline-secondary ml-3" style={{marginBottom:'20px'}}>Ajouter un livre</button>
                         </div>
                     </form>
             </div>
@@ -84,13 +89,8 @@ const AddBooks = ({libraryData,addBook,deleteBook,deleteAll}) => {
                 <div className='row' style={{marginTop:'40px'}}>
                     <div className="col-md-12">
                         <ul className="list-group">
-                            <li className="list-group-item list-group-item-light d-flex justify-content-between">
-                                livres enregistrés ici
-                            </li>
+                            {displaydata}
                         </ul>   
-                        <div className="d-flex justify-content-center">
-                            <button className="btn btn-danger mt-4 mb-5">Effacer tous les livres</button>
-                        </div>
                         {deleteAllBooksBtn}
                     </div>
                 </div>

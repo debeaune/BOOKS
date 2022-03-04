@@ -13,9 +13,12 @@ const SearchBooks = () => {
     const state = useSelector(state =>state.search)
     const dispatch = useDispatch()
 
+    console.log(state)
+
     const handleSubmit = e =>{
         e.preventDefault();
-        dispatch(fetchBooks(title))
+        dispatch(fetchBooks(title));
+        console.log(title)
     }
 
     const handleSave = (title,author) =>{
@@ -26,7 +29,7 @@ const SearchBooks = () => {
 
     const displayFetchedBooks= state.isLoading ?(
         <div className="d-flex justify-content-center">
-            <div className="spinner-border text-info" role="status">
+            <div className="spinner-border text-info" style={{marginTop:'30px',marginBottom:'30px'}} role="status">
                 <span className="sr-only">Loading...</span>
             </div>
         </div>
@@ -51,6 +54,7 @@ const SearchBooks = () => {
                             </button>
                         </h5>
                     </div>
+
                     <div id={data.id} className="collapse" data-parent="#accordion">
                         <div className="card-body">
                             {
@@ -58,7 +62,7 @@ const SearchBooks = () => {
                                 <img src={data.volumeInfo.imageLinks.thumbnail} alt={data.volumeInfo.title}/>
                             }
                             <br />
-                            <h4 className="card-title">Titre:{data.volumeInfo.title}</h4>
+                            <h4 className="card-title">Titre: {data.volumeInfo.title}</h4>
                             <h5 className="card-title">Auteurs: {data.volumeInfo.authors}</h5>
                             <p className="card-text">Description: {data.volumeInfo.description}</p>
                             <a 
@@ -69,7 +73,7 @@ const SearchBooks = () => {
                                 >
                                 Plus d'infos</a>
                                 <button 
-                                    className="btn btn-outline-secondary ml-3"
+                                    className="btn btn-outline-secondary" style={{marginLeft:'5px'}}
                                     onClick={()=>handleSave(data.volumeInfo.title,data.volumeInfo.authors)}
                                 >
                                 Enregistrer
@@ -86,37 +90,35 @@ const SearchBooks = () => {
 
     return(
         <main role="main">
-            <div className="jumbotron jumbotron-fluid">
-                <div className="container text-center">
-                    <h1 className="display-4">BOOKS</h1>
-                    <p>Indiquez le sujet du livre à rechercher sur Google API</p>
+            <div className="container text-center">
+                <h1 className="display-4">BOOKS</h1>
+                <p>Indiquez le sujet du livre à rechercher sur Google API</p>
 
-                    <form 
-                        className="form-inline justify-content-center"
-                        onSubmit={handleSubmit}
-                        >
-                        <div className="form-group">
-                            <input 
-                                type="text" className="form-control"
-                                placeholder="Quoi rechercher ?"
-                                required
-                                value={title}
-                                onChange={ e =>setTitle(e.target.value)}
-                            />
-                        </div>
-                        <div className="form-group">
-                            <button 
-                                className="btn btn-outline-secondary ml-3">
-                                Rechercher
-                            </button>
-                        </div>
-                    </form>
-                </div>
-            </div>
+                <form 
+                    className="row justify-content-center"
+                    onSubmit={handleSubmit}
+                >
+                    <div className="col-auto">
+                        <input 
+                            type="text" className="form-control"
+                            placeholder="Quoi rechercher ?"
+                            required
+                            value={title}
+                            onChange={ e =>setTitle(e.target.value)}
+                        />
+                    </div>
+                    <div className="col-auto">
+                        <button 
+                            className="btn btn-outline-secondary ml-3">
+                            Rechercher
+                        </button>
+                    </div>
+                </form>
 
-            <div className="container" style={{minHeight:'200px'}}>
-                <div id="accordion">
-                    { displayFetchedBooks }
+                <div className="container" style={{minHeight:'330px'}}>
+                    <div id="accordion">
+                        { displayFetchedBooks }
+                    </div>
                 </div>
             </div>
 

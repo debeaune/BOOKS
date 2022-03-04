@@ -9,13 +9,12 @@ const NavBar = () => {
                     <a href="/" className="text-decoration-none text-white">BOOKS</a>
                 </h4>
 
-                <nav className="btn-group">
+                <nav className="btn-group" style={{marginLeft:'auto'}}>
                     <Link to="/" className="btn btn-light">Accueil</Link>
                     <Link to="/search" className="btn btn-light">Rechercher</Link>
                 </nav>
-            </div>  
+            </div>
         </header>
-
     )
 }
 
